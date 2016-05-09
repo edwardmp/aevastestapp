@@ -1,0 +1,39 @@
+plugins {
+  id "com.srcclr.gradle" version "2.0.0"
+}
+
+srcclr {
+  apiToken = "eyJhbGciOiJSUzI1NiJ9.eyJpZCI6MjAxLCJleHAiOjE0OTQzNDYyODcsImF1dGhvcml0aWVzIjoiQUdFTlQiLCJqdGkiOiIyODJiZTc5NC0wYjI0LTRkN2MtOGM4ZC0yOTU5MzM4NzJhM2YiLCJjbGllbnRfaWQiOiIiLCJzY29wZSI6W119.2MKY323nmsW-ZTaaM9pH4falZJYl35w2EdsNvetk0U8FfeoT3ryiHL77ByncpVukLZbYZgPyaRjvjUPnpNUORQ-svOoq1AINODh5Y9nlIDyHMaTOn10e6up5eRT70G-RmRbvUo05TN8wNEhmdOQDXqfIEEvMaMAufu3qn8ND6JM"
+}
+
+group 'eu.sig'
+version '1.0-SNAPSHOT'
+
+
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+repositories {
+    mavenCentral()
+}
+
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'eu.sig.aevastestapp.DiscardServerHandler'
+    }
+    doFirst {
+        from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
+    }
+}
+
+if (!hasProperty('mainClass')) {
+    ext.mainClass = 'eu.sig.aevastestapp.DiscardServerHandler'
+}
+
+
+dependencies {
+    compile group: 'io.netty', name: 'netty', version: '3.9.1.1.Final'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}

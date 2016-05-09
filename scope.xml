@@ -1,0 +1,7 @@
+<system projectCode="0001" name="aevastestapp">
+    <scope baseDir="/Users/epoot/Desktop/aevastestapp" srcDir="/Users/epoot/Desktop/aevastestapp/src" databaseName="aevastestapp_test">
+        <language name="java">
+            <test />
+        </language>
+    </scope>
+</system>
